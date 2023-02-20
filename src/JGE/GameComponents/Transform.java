@@ -10,6 +10,7 @@ public class Transform extends GameComponent{
     public float scale;
 
     public Transform() {
+        super();
         this.position = new Vector3D();
         this.rotation = new Vector3D();
         this.dimensions = new Vector2D();
