@@ -2,7 +2,7 @@ package Shapes.Primitives;
 
 import Math.Vector.Vector2D;
 import Math.Vector.Vector3D;
-import Rendering.Transform;
+import JGE.GameComponents.Transform;
 import Utils.Color.Color;
 
 public class Quad extends Shape{

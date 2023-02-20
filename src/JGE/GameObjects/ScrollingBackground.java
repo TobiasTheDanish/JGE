@@ -1,15 +1,13 @@
-package Shapes.Entities;
+package JGE.GameObjects;
 
 import Math.Matrix.Matrix4;
 import Math.Vector.Vector2D;
 import Math.Vector.Vector3D;
-import Rendering.Shader;
-import Rendering.Transform;
+import JGE.GameComponents.*;
 import Shapes.Primitives.Quad;
 
-public class ScrollingBackground {
+public class ScrollingBackground extends GameObject {
     private final Quad quad;
-    private final Transform transform;
     private final Transform[] quadTransforms = new Transform[4];
 
     public ScrollingBackground(Transform transform, String texturePath) {

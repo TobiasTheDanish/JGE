@@ -1,9 +1,8 @@
 import Math.Matrix.Matrix4;
 import Math.Vector.Vector2D;
 import Math.Vector.Vector3D;
-import Rendering.Transform;
-import Shapes.Entities.ScrollingBackground;
-import Shapes.Primitives.Quad;
+import JGE.GameComponents.*;
+import JGE.GameObjects.*;
 import Shapes.Primitives.Triangle;
 import Utils.Input.Input;
 import Utils.Input.MouseInput;
