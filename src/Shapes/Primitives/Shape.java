@@ -38,9 +38,13 @@ public abstract class Shape {
     protected Shape(byte[] indices, float[] vertices, float[] textureCoords, String vertexPath, String fragmentPath, String texturePath) {
         vertexCount = indices.length;
         indexBuffer = new IndexBuffer(indices, vertexCount);
+        System.out.println(this.getClass() + " indexbuffer: " + indexBuffer.getRendererID());
         mesh = new VertexArray(vertices, textureCoords);
+        System.out.println(this.getClass() + " vertexArray: " + mesh.getRendererID());
         texture = new Texture(texturePath, 1);
+        System.out.println(this.getClass() + " texture: " + texture.getRendererID());
         shader = new Shader(vertexPath, fragmentPath);
+        System.out.println(this.getClass() + " shader: " + shader.getRendererID());
     }
 
     public void render() {
@@ -61,49 +65,21 @@ public abstract class Shape {
         if (texture != null) texture.unbind();
     }
 
-    public void move(Vector3D movement) {
-        this.position.add(movement);
-    }
-
-    public void rotate(Vector3D movement) {
-        this.rotation.add(movement);
-    }
-
-    public void scale(float scale) {
-        this.scale += scale;
-    }
-
     public void setProjectionMatrix(Matrix4 matrix) {
         shader.bind();
         shader.setUniform("pr_matrix", matrix);
         shader.unbind();
     }
 
-    public Shader getShader() {
-        return shader;
+    public void setViewMatrix(Matrix4 matrix) {
+        shader.bind();
+        shader.setUniform("vw_matrix", matrix);
+        shader.unbind();
     }
 
-    public VertexArray getMesh() {
-        return mesh;
-    }
-
-    public IndexBuffer getIndexBuffer() {
-        return indexBuffer;
-    }
-
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public Vector3D getPosition() {
-        return position;
-    }
-
-    public Vector3D getRotation() {
-        return rotation;
-    }
-
-    public float getScale() {
-        return scale;
+    public void setTransformationMatrix(Matrix4 matrix) {
+        shader.bind();
+        shader.setUniform("transformation_matrix", matrix);
+        shader.unbind();
     }
 }

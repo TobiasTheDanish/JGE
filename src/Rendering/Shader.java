@@ -44,6 +44,11 @@ public class Shader extends Component {
             bind();
         }
         glUniform1i(getUniformLocation(uniform), value);
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
     }
 
     public void setUniform(String uniform, float value) {
@@ -52,6 +57,11 @@ public class Shader extends Component {
             bind();
         }
         glUniform1f(getUniformLocation(uniform), value);
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
     }
 
     public void setUniform(String uniform, Vector2D vec2) {
@@ -60,6 +70,11 @@ public class Shader extends Component {
             bind();
         }
         glUniform2f(getUniformLocation(uniform), vec2.x, vec2.y);
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
     }
 
     public void setUniform(String uniform, Vector3D vec3) {
@@ -68,6 +83,11 @@ public class Shader extends Component {
             bind();
         }
         glUniform3f(getUniformLocation(uniform), vec3.x, vec3.y, vec3.z);
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
     }
 
     public void setUniform(String uniform, Color color) {
@@ -76,6 +96,11 @@ public class Shader extends Component {
             bind();
         }
         glUniform4f(getUniformLocation(uniform), color.r, color.g, color.b, color.a);
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
     }
 
     public void setUniform(String uniform, Matrix4 matrix) {
@@ -84,6 +109,11 @@ public class Shader extends Component {
             bind();
         }
         glUniformMatrix4fv(getUniformLocation(uniform), false, matrix.toFloatBuffer());
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
     }
 
     private int getUniformLocation(String name) {
@@ -97,7 +127,16 @@ public class Shader extends Component {
         } else {
             locationCache.put(name, location);
         }
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
 
         return location;
+    }
+
+    public int getRendererID() {
+        return rendererID;
     }
 }

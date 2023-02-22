@@ -65,4 +65,8 @@ public class Texture extends Component {
     public void unbind() {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
+
+    public int getRendererID() {
+        return rendererID;
+    }
 }

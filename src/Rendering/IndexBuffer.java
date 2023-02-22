@@ -32,4 +32,8 @@ public class IndexBuffer extends Component {
     public int getCount() {
         return count;
     }
+
+    public int getRendererID() {
+        return rendererID;
+    }
 }

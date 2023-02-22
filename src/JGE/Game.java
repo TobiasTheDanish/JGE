@@ -56,6 +56,7 @@ public abstract class Game implements Runnable {
                 delta--;
             }
             render();
+            glfwSwapBuffers(window);
 
             frames++;
             if (System.currentTimeMillis() - timer > 1000) {
@@ -108,6 +109,10 @@ public abstract class Game implements Runnable {
         isRunning = true;
 
         GL.createCapabilities();
+
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        System.out.println("OpenGL: " + glGetString(GL_VERSION));
     }
 
     protected void update() {
@@ -115,7 +120,7 @@ public abstract class Game implements Runnable {
     }
 
     protected void render() {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     }
 

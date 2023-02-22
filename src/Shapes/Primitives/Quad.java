@@ -31,6 +31,36 @@ public class Quad extends Shape{
         shader.setUniform("u_Color", Color.RGBA(0.2f, 0.3f, 0.8f, 1.0f));
     }
 
+    public Quad(Vector2D dimensions, String texturePath) {
+        super(
+                new byte[] {
+                        0, 1, 2,
+                        2, 3, 0
+                },
+                new float[] {
+                        -dimensions.x/2, -dimensions.y/2, 0.0f, //0
+                         dimensions.x/2, -dimensions.y/2, 0.0f, //1
+                         dimensions.x/2,  dimensions.y/2, 0.0f, //2
+                        -dimensions.x/2,  dimensions.y/2, 0.0f, //3
+                },
+                new float[] {
+                        0.0f, 1.0f, //3
+                        1.0f, 1.0f, //2
+                        1.0f, 0.0f, //1
+                        0.0f, 0.0f, //0
+                },
+                "./res/shaders/texturedQuad.vert",
+                "./res/shaders/texturedQuad.frag",
+                texturePath
+        );
+
+        this.dimensions = dimensions;
+        this.position = position;
+        this.rotation = rotation;
+        this.scale = scale;
+
+        shader.setUniform("u_Texture", 1);
+    }
     public Quad(Vector2D dimensions, Vector3D position, Vector3D rotation, float scale, String texturePath) {
         super(
             new byte[] {

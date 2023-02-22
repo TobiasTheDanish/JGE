@@ -2,11 +2,13 @@ package JGE.GameObjects;
 
 import JGE.GameComponents.*;
 import Math.Matrix.Matrix4;
+import Shapes.Primitives.Shape;
 
 import java.util.ArrayList;
 
 public abstract class GameObject {
     protected Transform transform;
+    protected Shape shape;
     private ArrayList<GameComponent> components;
 
     public GameObject() {
@@ -23,9 +25,25 @@ public abstract class GameObject {
         components.add(component);
     }
 
-    public abstract void setProjectionMatrix(Matrix4 projectionMatrix);
+    public Transform getTransform() {
+        return transform;
+    }
+
+    public void setProjectionMatrix(Matrix4 projectionMatrix) {
+        shape.setProjectionMatrix(projectionMatrix);
+    }
+
+    public void setViewMatrix(Matrix4 viewMatrix) {
+        shape.setViewMatrix(viewMatrix);
+    }
+
+    public void setTransformationMatrix(Matrix4 transformationMatrix) {
+        shape.setTransformationMatrix(transformationMatrix);
+    }
+
+    public void render() {
+        shape.render();
+    }
 
     public abstract void update();
-
-    public abstract void render();
 }
