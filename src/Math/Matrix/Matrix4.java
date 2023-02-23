@@ -2,8 +2,9 @@ package Math.Matrix;
 
 import JGE.GameComponents.Transform;
 import Math.Vector.Vector3D;
-import Math.Vector.Vector4D;
 import Utils.BufferUtils;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 import java.nio.FloatBuffer;
 import java.util.Arrays;
@@ -95,8 +96,8 @@ public class Matrix4 {
         float sin = (float) Math.sin(r);
 
         res.elements[0 + 0 * 4] = cos;
-        res.elements[1 + 0 * 4] = -sin;
-        res.elements[0 + 1 * 4] = sin;
+        res.elements[1 + 0 * 4] = sin;
+        res.elements[0 + 1 * 4] = -sin;
         res.elements[1 + 1 * 4] = cos;
 
         return res;
@@ -129,10 +130,24 @@ public class Matrix4 {
     }
 
     public static Matrix4 transformation(Transform t) {
+        float rotX = (float) Math.toRadians(t.rotation.x);
+        float rotY = (float) Math.toRadians(t.rotation.y);
+        float rotZ = (float) Math.toRadians(t.rotation.z);
+        Matrix4f tmp = new Matrix4f()
+                .translate(t.position.x, t.position.y, t.position.z)
+                .rotate(rotX, 1.0f, 0.0f, 0.0f)
+                .rotate(rotY, 0.0f, 1.0f, 0.0f)
+                .rotate(rotZ, 0.0f, 0.0f, 1.0f)
+                .scale(t.scale);
+
+        Matrix4 res = new Matrix4();
+        res.elements = tmp.get(res.elements);
+        return res;
+    }
+
+    public static Matrix4 transformation2D(Transform t) {
         Matrix4 res = Matrix4.translate(t.position);
 
-        res = res.multiply(Matrix4.rotateX(t.rotation.x));
-        res = res.multiply(Matrix4.rotateY(t.rotation.y));
         res = res.multiply(Matrix4.rotateZ(t.rotation.z));
 
         res = res.multiply(t.scale);

@@ -21,6 +21,11 @@ public class Shader extends Component {
 
     public Shader(String vertexPath, String fragmentPath) {
         rendererID = ShaderUtils.parseShader(vertexPath, fragmentPath);
+        int error = glGetError();
+        if (error != GL_NO_ERROR) {
+            System.out.println(rendererID + ", " + error);
+            System.out.println(glGetProgramInfoLog(rendererID));
+        }
     }
 
     @Override

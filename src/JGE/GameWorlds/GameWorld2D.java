@@ -26,7 +26,7 @@ public class GameWorld2D extends GameWorld{
 
     @Override
     public void render() {
-        Matrix4 viewMatrix = Matrix4.transformation(camera.getTransform());
+        Matrix4 viewMatrix = Matrix4.transformation2D(camera.getTransform());
         for (GameObject gameObject : gameObjects) {
             gameObject.setTransformationMatrix(Matrix4.transformation(gameObject.getTransform()));
             gameObject.setViewMatrix(viewMatrix);

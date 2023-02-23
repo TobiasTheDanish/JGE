@@ -14,7 +14,7 @@ public class Transform extends GameComponent{
         this.position = new Vector3D();
         this.rotation = new Vector3D();
         this.dimensions = new Vector2D();
-        this.scale = 0.0f;
+        this.scale = 1.0f;
     }
 
     public Transform(Transform t) {
@@ -28,21 +28,21 @@ public class Transform extends GameComponent{
         this.dimensions = dimensions;
         this.position = new Vector3D();
         this.rotation = new Vector3D();
-        this.scale = 0.0f;
+        this.scale = 1.0f;
     }
 
     public Transform(Vector3D position, Vector2D dimensions) {
         this.position = position;
         this.dimensions = dimensions;
         this.rotation = new Vector3D();
-        this.scale = 0.0f;
+        this.scale = 1.0f;
     }
 
     public Transform(Vector3D position, Vector3D rotation, Vector2D dimensions) {
         this.position = position;
         this.rotation = rotation;
         this.dimensions = dimensions;
-        this.scale = 0.0f;
+        this.scale = 1.0f;
     }
 
     public Transform(Vector3D position, Vector3D rotation, Vector2D dimensions, float scale) {

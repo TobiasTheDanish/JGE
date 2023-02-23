@@ -6,11 +6,16 @@ import JGE.Game;
 import Math.Vector.Vector2D;
 import Math.Vector.Vector3D;
 import JGE.GameObjects.ScrollingBackground;
+import Utils.Input.Input;
+
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_P;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_R;
 
 public class GameTest extends Game {
     GameWorld world;
 
     ScrollingBackground[] bg;
+    private boolean gamePaused = true;
 
     @Override
     protected void init() {
@@ -27,7 +32,7 @@ public class GameTest extends Game {
             world.addGameObject(sbg);
         }
 
-        Bird bird = new Bird(new Transform(new Vector3D(windowWidth/4, windowHeight/4,0.0f), new Vector2D(windowWidth, windowHeight)), "res/textures/flappy_bird.png");
+        Bird bird = new Bird(new Transform(new Vector3D(windowWidth/3, windowHeight/2,-0.9f), new Vector2D(100.0f, 100.0f)), "./res/textures/flappy_bird.png");
         world.addGameObject(bird);
     }
 
@@ -35,7 +40,17 @@ public class GameTest extends Game {
     protected void update() {
         super.update();
 
-        world.update();
+        if (Input.keys[GLFW_KEY_P]) {
+            gamePaused = true;
+        }
+
+        if (Input.keys[GLFW_KEY_R]) {
+            gamePaused = false;
+        }
+
+        if (!gamePaused) {
+            world.update();
+        }
     }
 
     @Override

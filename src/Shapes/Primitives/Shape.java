@@ -38,13 +38,13 @@ public abstract class Shape {
     protected Shape(byte[] indices, float[] vertices, float[] textureCoords, String vertexPath, String fragmentPath, String texturePath) {
         vertexCount = indices.length;
         indexBuffer = new IndexBuffer(indices, vertexCount);
-        System.out.println(this.getClass() + " indexbuffer: " + indexBuffer.getRendererID());
+//        System.out.println(this.getClass() + " indexbuffer: " + indexBuffer.getRendererID());
         mesh = new VertexArray(vertices, textureCoords);
-        System.out.println(this.getClass() + " vertexArray: " + mesh.getRendererID());
+//        System.out.println(this.getClass() + " vertexArray: " + mesh.getRendererID());
         texture = new Texture(texturePath, 1);
-        System.out.println(this.getClass() + " texture: " + texture.getRendererID());
+//        System.out.println(this.getClass() + " texture: " + texture.getRendererID());
         shader = new Shader(vertexPath, fragmentPath);
-        System.out.println(this.getClass() + " shader: " + shader.getRendererID());
+//        System.out.println(this.getClass() + " shader: " + shader.getRendererID());
     }
 
     public void render() {

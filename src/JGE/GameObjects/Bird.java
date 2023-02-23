@@ -10,6 +10,7 @@ import Utils.Input.Input;
 import java.util.ArrayList;
 
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
+import static org.lwjgl.glfw.GLFW.GLFW_KEY_UP;
 
 public class Bird extends GameObject{
     private float delta;
@@ -22,19 +23,25 @@ public class Bird extends GameObject{
 
     @Override
     public void update() {
-//        transform.position.y -= delta;
+        transform.position.y += delta;
 
-        if (Input.keys[GLFW_KEY_SPACE]) {
-            delta = -0.15f;
+        if (Input.keys[GLFW_KEY_UP]) {
+            delta = 15.0f;
         } else {
-            delta += 0.01f;
+            delta -= 0.9f;
         }
 
-//        transform.rotation.z = -delta * 90.0f;
-    }
-
-    @Override
-    public void render() {
-        shape.render();
+        transform.rotation.z = delta;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
