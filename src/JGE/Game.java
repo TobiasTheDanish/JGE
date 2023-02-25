@@ -91,6 +91,7 @@ public abstract class Game implements Runnable {
 
         glfwSetKeyCallback(window, new Input());
         glfwSetMouseButtonCallback(window, new MouseInput());
+        glfwSetWindowSizeCallback(window, new SizeCallback());
 
         try (MemoryStack stack = stackPush() ) {
             IntBuffer wWidth = stack.mallocInt(1);
