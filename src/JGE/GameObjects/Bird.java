@@ -1,15 +1,10 @@
 package JGE.GameObjects;
 
-import JGE.GameComponents.GameComponent;
 import JGE.GameComponents.Transform;
-import Math.Matrix.Matrix4;
 import Math.Vector.Vector2D;
 import Shapes.Primitives.Quad;
-import Utils.Input.Input;
+import Utils.Callbacks.Input.*;
 
-import java.util.ArrayList;
-
-import static org.lwjgl.glfw.GLFW.GLFW_KEY_SPACE;
 import static org.lwjgl.glfw.GLFW.GLFW_KEY_UP;
 
 public class Bird extends GameObject{

@@ -1,7 +1,7 @@
 package JGE;
 
-import Utils.Input.Input;
-import Utils.Input.MouseInput;
+import Utils.Callbacks.Window.*;
+import Utils.Callbacks.Input.*;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;

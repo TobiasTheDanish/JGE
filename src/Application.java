@@ -4,8 +4,7 @@ import Math.Vector.Vector3D;
 import JGE.GameComponents.*;
 import JGE.GameObjects.*;
 import Shapes.Primitives.Triangle;
-import Utils.Input.Input;
-import Utils.Input.MouseInput;
+import Utils.Callbacks.Input.*;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -111,7 +110,7 @@ public class Application implements Runnable{
 
         Matrix4 projectionMatrix = Matrix4.orthographic(0.0f, windowWidth, 0.0f, windowHeight, -1.0f, 1.0f);
 
-        bg = new ScrollingBackground(new Transform( new Vector3D(windowWidth / 2, windowHeight / 2, 0.0f), new Vector3D(), new Vector2D(windowWidth, windowHeight), 1.0f), "./res/textures/flappy_bg.jpeg");
+        bg = new ScrollingBackground(1.5f, new Transform( new Vector3D(windowWidth / 2, windowHeight / 2, 0.0f), new Vector3D(), new Vector2D(windowWidth, windowHeight), 1.0f), "./res/textures/flappy_bg.jpeg");
         bg.setProjectionMatrix(projectionMatrix);
         triangle = new Triangle(new Vector2D(windowWidth / 4.0f, windowHeight /3.0f), new Vector3D(windowWidth /2.0f, windowHeight /2.0f, 0.1f), new Vector3D(), 1.0f);
         triangle.setProjectionMatrix(projectionMatrix);

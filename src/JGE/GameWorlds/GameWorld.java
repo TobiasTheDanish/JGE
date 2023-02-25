@@ -10,6 +10,7 @@ public abstract class GameWorld {
     private final Matrix4 projectionMatrix;
     protected Camera camera;
     protected ArrayList<GameObject> gameObjects;
+    protected boolean gamePaused = true;
 
     public abstract void update();
     public abstract void render();

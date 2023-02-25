@@ -42,7 +42,9 @@ public abstract class GameObject {
     }
 
     public void render() {
-        shape.render();
+        if (shape != null) {
+            shape.render();
+        }
     }
 
     public abstract void update();

@@ -1,4 +1,4 @@
-package Utils.Input;
+package Utils.Callbacks.Input;
 
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
