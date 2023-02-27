@@ -129,6 +129,16 @@ public class Matrix4 {
         return res;
     }
 
+    public Matrix4 add(Matrix4 other) {
+        Matrix4 res = Matrix4.identity();
+
+        Matrix4f tmp = new Matrix4f(this.toFloatBuffer()).add(new Matrix4f(other.toFloatBuffer()));
+
+        res.elements = tmp.get(res.elements);
+
+        return res;
+    }
+
     public static Matrix4 transformation(Transform t) {
         float rotX = (float) Math.toRadians(t.rotation.x);
         float rotY = (float) Math.toRadians(t.rotation.y);

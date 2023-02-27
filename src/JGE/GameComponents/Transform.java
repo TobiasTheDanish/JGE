@@ -3,7 +3,7 @@ package JGE.GameComponents;
 import Math.Vector.Vector2D;
 import Math.Vector.Vector3D;
 
-public class Transform extends GameComponent{
+public class Transform {
     public Vector3D position;
     public Vector3D rotation;
     public Vector2D dimensions;
@@ -50,5 +50,21 @@ public class Transform extends GameComponent{
         this.rotation = rotation;
         this.dimensions = dimensions;
         this.scale = scale;
+    }
+
+    public Vector2D upperLeftCorner() {
+        return new Vector2D(position.x - dimensions.x/2, position.y + dimensions.y/2);
+    }
+
+    public Vector2D upperRightCorner() {
+        return new Vector2D(position.x + dimensions.x/2, position.y + dimensions.y/2);
+    }
+
+    public Vector2D bottomLeftCorner() {
+        return new Vector2D(position.x - dimensions.x/2, position.y - dimensions.y/2);
+    }
+
+    public Vector2D bottomRightCorner() {
+        return new Vector2D(position.x + dimensions.x/2, position.y - dimensions.y/2);
     }
 }

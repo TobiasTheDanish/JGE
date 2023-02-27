@@ -2,31 +2,56 @@ package JGE.GameObjects;
 
 import JGE.GameComponents.*;
 import Math.Matrix.Matrix4;
+import Math.Vector.Vector3D;
 import Shapes.Primitives.Shape;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class GameObject {
     protected Transform transform;
     protected Shape shape;
-    private ArrayList<GameComponent> components;
+    protected Map<Class<? extends GameComponent>, GameComponent> components;
+    protected List<GameObject> children;
 
-    public GameObject() {
-        transform = new Transform();
-        this.components = new ArrayList<>();
+    public GameObject(Transform transform, Shape shape) {
+        this.transform = transform;
+        this.shape = shape;
+        this.components = new HashMap<>();
+        this.children = new ArrayList<>();
     }
 
-    public GameObject(ArrayList<GameComponent> components) {
-        transform = new Transform();
-        this.components = components;
+    public <T extends GameComponent> void addComponent(T component) {
+        if (components.containsKey(component.getClass()) || components.containsKey(component.getHighestSubClass())) {
+            return;
+        }
+        if (component.isHighestSubClass()) {
+            component.setGameObject(this);
+            components.put(component.getClass(), component);
+        } else {
+            component.setGameObject(this);
+            components.put(component.getHighestSubClass(), component);
+        }
+
+        System.out.println(components);
     }
 
-    public void addComponent(GameComponent component) {
-        components.add(component);
+    public <T extends GameComponent> T getComponent(Class<T> type) {
+        return (T) components.get(type);
     }
 
     public Transform getTransform() {
         return transform;
+    }
+
+    public Vector3D getPosition() {
+        return transform.position;
+    }
+
+    public Vector3D getRotation() {
+        return transform.rotation;
     }
 
     public void setProjectionMatrix(Matrix4 projectionMatrix) {
@@ -47,5 +72,19 @@ public abstract class GameObject {
         }
     }
 
-    public abstract void update();
+    public void update() {
+        if (components != null) {
+            for (GameComponent gameComponent : components.values()) {
+                gameComponent.update();
+            }
+        }
+    }
+
+    public Shape getShape() {
+        return shape;
+    }
+
+    public List<GameObject> getChildren() {
+        return children;
+    }
 }

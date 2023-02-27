@@ -1,5 +1,6 @@
 package JGE.GameWorlds;
 
+import JGE.GameComponents.Collider2D;
 import JGE.GameComponents.Transform;
 import JGE.GameObjects.Camera2D;
 import JGE.GameObjects.GameObject;
@@ -33,6 +34,17 @@ public class GameWorld2D extends GameWorld{
         if (!gamePaused) {
             for (GameObject gameObject : gameObjects) {
                 gameObject.update();
+                Collider2D col = gameObject.getComponent(Collider2D.class);
+                if (col !=  null) {
+                    for (GameObject go : gameObjects) {
+                        Collider2D other = go.getComponent(Collider2D.class);
+                        if (other != null) {
+                            if (col.intersects(other)) {
+                                System.out.println("Collision!");
+                            }
+                        }
+                    }
+                }
             }
         }
 
